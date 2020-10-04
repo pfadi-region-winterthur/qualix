@@ -13,10 +13,10 @@
             return $rendered->e($observation->content);
         },
         __('t.models.observation.block') => function(\App\Models\Observation $observation) { return $observation->block->blockname_and_number; },
-        __('t.models.observation.requirements') => function(\App\Models\Observation $observation) {
-            return (new App\Util\HtmlString)->s(implode('', array_map(function(\App\Models\Requirement $requirement) {
-                return (new App\Util\HtmlString)->s('<span class="white-space-normal badge badge-' . ($requirement->mandatory ? 'warning' : 'info') . '">')->e($requirement->content)->s('</span>');
-            }, $observation->requirements->all())));
+        __('t.models.observation.categories') => function(\App\Models\Observation $observation) {
+            return (new App\Util\HtmlString)->s(implode(' ', array_map(function(\App\Models\Category $category) {
+                return (new App\Util\HtmlString)->s('<span class="white-space-normal badge badge-primary">')->e($category->name)->s('</span>');
+            }, $observation->categories->all())));
         },
         __('t.models.observation.impression') => function(\App\Models\Observation $observation) {
             $impmression = $observation->impression;
